@@ -9,6 +9,10 @@ Download and install the following tools.
 * VirtualBox 5.1.x (https://www.virtualbox.org/wiki/Downloads)
 * Vagrant 1.9.x (https://www.vagrantup.com/downloads.html)
 
+## Setup Guide on Medium
+
+https://lemmings.io/clojure-and-atom-editor-setup-40f8f09237b4
+
 ## Usage
 
 `vagrant up` starts the virtual machine. The command will also provision the environment if it is executed for the first time.
