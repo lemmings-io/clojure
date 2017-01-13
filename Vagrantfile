@@ -8,7 +8,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 7888, host: 7888
   config.vm.hostname = "lemmings"
 
-  config.vm.synced_folder "./vagrant", "/vagrant"
+  config.vm.synced_folder ".", "/lemmings"
 
   config.vm.provision "shell", path: "provision.sh"
 end

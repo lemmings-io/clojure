@@ -33,6 +33,9 @@ main () {
     mkdir -p /home/vagrant/bin
     chown vagrant:vagrant /home/vagrant/bin
 
+    # Navigate to project directory on login
+    echo "cd /lemmings" >> /home/vagrant/.bashrc
+
     # Add greeting
     echo "Hello 💧 Lemming :)" > /etc/motd
 
