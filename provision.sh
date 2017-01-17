@@ -3,10 +3,7 @@
 set -o nounset
 set -o errexit
 
-readonly Progname=$(basename "$0")
-readonly Progdir=$(readlink -m $(dirname "$0"))
-readonly Args="$@"
-readonly BasePath="/vagrant"
+readonly BasePath="/lemmings"
 
 clojure () {
     echo "Installing clojure"
@@ -27,23 +24,23 @@ main () {
     export DEBIAN_FRONTEND=noninteractive
 
     # Update apt cache
-    apt-get update &> /dev/null
-    apt-get autoclean &> /dev/null
-    apt-get autoremove -y &> /dev/null
+    apt-get update
+    apt-get autoclean
+    apt-get autoremove -y
 
     # Install some base software
-    apt-get install -y curl vim &> /dev/null
+    apt-get install -y curl vim
 
     # Create bin dir for user vagrant
     mkdir -p /home/vagrant/bin
     chown vagrant:vagrant /home/vagrant/bin
 
     # Navigate to project directory on login
-    echo "cd /lemmings" >> /home/vagrant/.bashrc
+    echo "cd ${BasePath}" >> /home/vagrant/.bashrc
 
     # Add greeting
     echo "Hello 💧 Lemming :)" > /etc/motd
 
     clojure
 }
-main $Args
+main
