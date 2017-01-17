@@ -6,6 +6,7 @@ set -o errexit
 readonly Progname=$(basename "$0")
 readonly Progdir=$(readlink -m $(dirname "$0"))
 readonly Args="$@"
+readonly BasePath="/vagrant"
 
 clojure () {
     echo "Installing clojure"
@@ -14,6 +15,10 @@ clojure () {
     wget -q -O /home/vagrant/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
     chmod a+x /home/vagrant/bin/lein
     chown vagrant:vagrant /home/vagrant/bin/lein
+
+    cp -f ${BasePath}/cljrepl.service /etc/systemd/system/
+    systemctl enable cljrepl.service
+    systemctl start cljrepl.service
 }
 
 main () {
