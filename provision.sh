@@ -36,7 +36,9 @@ main () {
     chown vagrant:vagrant /home/vagrant/bin
 
     # Navigate to project directory on login
-    echo "cd ${BasePath}" >> /home/vagrant/.bashrc
+    LINE="cd ${BasePath}"
+    FILE=/home/vagrant/.bashrc
+    grep -q "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
 
     # Add greeting
     echo "Hello 💧 Lemming :)" > /etc/motd
