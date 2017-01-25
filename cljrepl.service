@@ -1,0 +1,11 @@
+[Unit]
+Description=Remote clojure REPL
+
+[Service]
+ExecStart=/home/vagrant/bin/lein repl :headless :host 0.0.0.0 :port 7888
+User=vagrant
+WorkingDirectory=/lemmings
+
+[Install]
+WantedBy=multi-user.target
+WantedBy=lemmings.mount
