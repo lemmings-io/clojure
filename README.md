@@ -13,10 +13,12 @@ Download and install the following tools.
 
 https://lemmings.io/clojure-and-atom-editor-setup-40f8f09237b4
 
-## Usage
+## Vagrant Usage
 
 `vagrant up` starts the virtual machine. The command will also provision the environment if it is executed for the first time.
 
 `vagrant ssh` starts an ssh session to the virtual machine
 
-Once you are sshed into the virtual machine you can start a leiningen REPL on port 7888 `lein repl :headless :host 0.0.0.0 :port 7888`. Thanks to the Vagrant setup this port is already forwarded to the host machine. You can now connect to your Clojure REPL running within the virtual machine (e.g. with Atom's [proto-repl]("https://atom.io/packages/proto-repl") package).
+## Clojure Remote nREPL Usage
+
+Once you are `ssh`ed into the virtual machine the nREPL is running and you can connect to it in Atom by pressing `CMD+ALT+Y` with `localhost` and port `7888`. Make sure you have Atom's [proto-repl]("https://atom.io/packages/proto-repl") package installed.
