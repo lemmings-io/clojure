@@ -28,6 +28,13 @@ main () {
     apt-get autoclean
     apt-get autoremove -y
 
+    # Install Heroku CLI
+    apt-get install software-properties-common  -y # debian only
+    add-apt-repository "deb https://cli-assets.heroku.com/branches/stable/apt ./"
+    curl -L https://cli-assets.heroku.com/apt/release.key | sudo apt-key add -
+    apt-get update
+    apt-get install heroku -y
+
     # Install some base software
     apt-get install -y curl vim
 
