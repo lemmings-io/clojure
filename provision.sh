@@ -14,6 +14,30 @@ clojure () {
     chown vagrant:vagrant /home/vagrant/bin/lein
 }
 
+heroku () {
+  # Install Heroku CLI
+  apt-get install software-properties-common -y # debian only
+  add-apt-repository "deb https://cli-assets.heroku.com/branches/stable/apt ./"
+  curl -L https://cli-assets.heroku.com/apt/release.key | apt-key add -
+  apt-get update
+  apt-get install heroku -y
+}
+
+ngrok () {
+  # Install ngrok
+  wget -q -O /home/vagrant/ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+  unzip /home/vagrant/ngrok.zip
+  mv /home/vagrant/ngrok /home/vagrant/bin/ngrok
+  chmod a+x /home/vagrant/bin/ngrok
+  chown vagrant:vagrant /home/vagrant/bin/ngrok
+  rm /home/vagrant/ngrok.zip
+
+  mkdir -p /home/vagrant/.ngrok2
+  cp -f ${BasePath}/ngrok.yml /home/vagrant/.ngrok2/
+  chmod -R a+x /home/vagrant/.ngrok2
+  chown -R vagrant:vagrant /home/vagrant/.ngrok2
+}
+
 main () {
     echo "PROVISIONING"
 
@@ -24,15 +48,8 @@ main () {
     apt-get autoclean
     apt-get autoremove -y
 
-    # Install Heroku CLI
-    apt-get install software-properties-common -y # debian only
-    add-apt-repository "deb https://cli-assets.heroku.com/branches/stable/apt ./"
-    curl -L https://cli-assets.heroku.com/apt/release.key | apt-key add -
-    apt-get update
-    apt-get install heroku -y
-
     # Install some base software
-    apt-get install -y curl vim
+    apt-get install -y curl vim unzip
 
     # Create bin dir for user vagrant
     mkdir -p /home/vagrant/bin
@@ -47,5 +64,7 @@ main () {
     echo "Hello 💧 Lemming :)" > /etc/motd
 
     clojure
+    heroku
+    ngrok
 }
 main
