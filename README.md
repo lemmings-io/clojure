@@ -11,7 +11,7 @@ Download and install the following tools.
 
 ## Setup Guide on Medium
 
-https://lemmings.io/clojure-and-atom-editor-setup-40f8f09237b4
+https://medium.com/lemmings/clojure-and-atom-editor-setup-40f8f09237b4
 
 ## Usage
 
